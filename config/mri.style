@@ -35,7 +35,8 @@ node,way   ele		text	     linear
 way        smoothness   text         linear
 way	   sac_scale    text         linear
 way        trail_visibility text     linear
-way	   protect_id	text	     linear
+node,way   shelter_type text         linear
+way        protect_class        text         linear
 #end maps.refuges.info's tweaks
 
 #Ont été viré pour limiter la place, car peu utile pour moi :
