@@ -1,0 +1,54 @@
+90GB  planet.pbf from 2025-11-15
+PG : 
+data_directory = '/home/big-data/postgresql/15/main'
+work_mem = 32MB
+shared_buffers = 250MB
+maintenance_work_mem = 1GB
+autovacuum_work_mem = 2GB
+wal_level = minimal
+checkpoint_timeout = 60min
+max_wal_size = 10GB
+checkpoint_completion_target = 0.9
+max_wal_senders = 0
+random_page_cost = 1.0
+
+
+./import.sh /home/big-data/tmp/planet-latest.osm.pbf
+osm2pgsql -c --drop --flat-nodes /home/big-data/tmp/osm2pgsql-nodes.bin --number-processes=8 -p planet_osm -m -G -s -S ./osm2pgsql-choosen.style -d gis -r pbf /home/big-data/tmp/planet-latest.osm.pbf
+2025-11-12 18:05:55  osm2pgsql version 1.8.0
+2025-11-12 18:05:55  Database version: 15.14 (Debian 15.14-0+deb12u1)
+2025-11-12 18:05:55  PostGIS version: 3.3
+2025-11-12 18:05:55  Setting up table 'planet_osm_point'
+2025-11-12 18:05:55  Setting up table 'planet_osm_line'
+2025-11-12 18:05:55  Setting up table 'planet_osm_polygon'
+2025-11-12 18:05:55  Setting up table 'planet_osm_roads'
+2025-11-15 02:55:24  Reading input files done in 204569s (56h 49m 29s).
+2025-11-15 02:55:24    Processed 10229822413 nodes in 858s (14m 18s) - 11923k/s
+2025-11-15 02:55:24    Processed 1140658764 ways in 108368s (30h 6m 8s) - 11k/s
+2025-11-15 02:55:24    Processed 13806143 relations in 95343s (26h 29m 3s) - 145/s
+2025-11-15 02:55:28  Dropping table 'planet_osm_nodes'
+2025-11-15 02:55:28  Table 'planet_osm_nodes' dropped in 0s
+2025-11-15 02:55:28  Dropping table 'planet_osm_ways'
+2025-11-15 02:55:30  Table 'planet_osm_ways' dropped in 2s
+2025-11-15 02:55:30  Dropping table 'planet_osm_rels'
+2025-11-15 02:55:30  Table 'planet_osm_rels' dropped in 0s
+2025-11-15 02:55:30  Done postprocessing on table 'planet_osm_nodes' in 0s
+2025-11-15 02:55:30  Done postprocessing on table 'planet_osm_ways' in 0s
+2025-11-15 02:55:30  Done postprocessing on table 'planet_osm_rels' in 0s
+2025-11-15 02:55:30  Clustering table 'planet_osm_line' by geometry...
+2025-11-15 02:55:30  Clustering table 'planet_osm_polygon' by geometry...
+2025-11-15 02:55:30  Clustering table 'planet_osm_roads' by geometry...
+2025-11-15 02:55:30  Clustering table 'planet_osm_point' by geometry...
+2025-11-15 05:33:47  Creating geometry index on table 'planet_osm_point'...
+2025-11-15 05:58:03  Creating geometry index on table 'planet_osm_roads'...
+2025-11-15 06:12:51  Analyzing table 'planet_osm_roads'...
+2025-11-15 06:25:02  Analyzing table 'planet_osm_point'...
+2025-11-15 06:25:45  All postprocessing on table 'planet_osm_point' done in 12614s (3h 30m 14s).
+2025-11-15 09:33:10  Creating geometry index on table 'planet_osm_line'...
+2025-11-15 10:58:16  Analyzing table 'planet_osm_line'...
+2025-11-15 10:59:08  All postprocessing on table 'planet_osm_line' done in 29018s (8h 3m 38s).
+2025-11-15 12:00:12  Creating geometry index on table 'planet_osm_polygon'...
+2025-11-15 13:48:36  Analyzing table 'planet_osm_polygon'...
+2025-11-15 13:48:38  All postprocessing on table 'planet_osm_polygon' done in 39188s (10h 53m 8s).
+2025-11-15 13:48:38  All postprocessing on table 'planet_osm_roads' done in 11856s (3h 17m 36s).
+2025-11-15 13:48:38  osm2pgsql took 239629s (66h 33m 49s) overall.
