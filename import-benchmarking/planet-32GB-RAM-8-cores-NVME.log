@@ -1,16 +1,5 @@
 90GB  planet.pbf from 2025-11-15
-PG : 
-data_directory = '/home/big-data/postgresql/15/main'
-work_mem = 32MB
-shared_buffers = 250MB
-maintenance_work_mem = 1GB
-autovacuum_work_mem = 2GB
-wal_level = minimal
-checkpoint_timeout = 60min
-max_wal_size = 10GB
-checkpoint_completion_target = 0.9
-max_wal_senders = 0
-random_page_cost = 1.0
+PG : Option par défaut de debian 12, aucune adaptation
 
 
 ./import.sh /home/big-data/tmp/planet-latest.osm.pbf
