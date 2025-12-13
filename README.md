@@ -1,4 +1,4 @@
-Those are shell scripts for importing and maintaining up to date an osm2pgsql schema of a postgresql database 
+Those are shell scripts for importing and updating a postgresql database with osm2pgsql
 + tools around that 
 + SQL requests for custom indexes 
 + management of renderd tile expiry
