@@ -76,16 +76,15 @@
 # OsmType  Tag          DataType     Flags
 
 #Used for OpenHikingMap and/or OpenTopoMap 
-node       mountain_pass text        linear
-node,way   ele          text         linear
-way        smoothness   text         linear
-way        trail_visibility text     linear
-node,way   shelter_type text         linear
-way        protect_class        text         linear
-way        sac_scale    text         linear
-
-# As of 2025 those tags aren't used yet, but I have plan for them
-way        via_ferrata_scale    text         linear
+node		mountain_pass 		text	linear
+node,way	ele          		text	linear
+way		smoothness   		text	linear
+way		trail_visibility 	text	linear
+node,way	shelter_type		text	linear
+way		protect_class		text	linear
+way		sac_scale		text	linear
+node		information		text	linear
+way		via_ferrata_scale	text	linear
 #end OpenHikingMap 's tweaks
 
 
