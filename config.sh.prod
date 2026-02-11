@@ -26,11 +26,11 @@ with_timeings=1
 #For osm2pgsql options (we could set the database name in it, but if an external script wants the database name, 
 #it would be easier to keep it in a variable) 
 #--tag-transform-script ./config/script.lua
-common_osm2pgsql_options="--number-processes=4 -p planet_osm -m -G -s -S $project_dir/osm2pgsql-choosen.style -d $base_osm"
-diff_osm2pgsql_options="-a -C 1000 $common_osm2pgsql_options"
+common_osm2pgsql_options="-C 6000 --number-processes=5 -p planet_osm -m -G -s -S $project_dir/osm2pgsql-choosen.style -d $base_osm"
+diff_osm2pgsql_options="-a $common_osm2pgsql_options"
 import_osm2pgsql_options="-c --drop --flat-nodes /home/big-data/tmp/osm2pgsql-nodes.bin $common_osm2pgsql_options"
 
-#Without flat nodes file, better for small extract 
+#Without flat nodes file, better for small (< 2GB pbf) extracts
 #import_osm2pgsql_options="-c --drop $common_osm2pgsql_options"
 
 #Rendering related
@@ -48,5 +48,5 @@ render_expired_options="-z13 --touch-from=13"
 #You can use this to execute the render_expired with another user like "sudo -u www-data"
 render_expired_prefix=""
 
-#Email to send end of initial import notice
+#Email to contact when the import has ended
 end_of_import_email="sylvain@letuffe.org"
