@@ -20,14 +20,11 @@ side tools :
 Installation
 ============
 
-* Install osm2pgsql (and Osmosis if you need diff updates)
+* Install osm2pgsql (osm2pgsql-replication is bundled with it, used for diff updates)
 
 * Copy ./config/config-sample.sh to ./config.sh and adapt (or use some adapted to extract or full planet)
 
-* Copy ./config/configuration-sample.txt to ./configuration.txt
-
 * Copy some osm2pgsql style file from ./config/*.style to osm2pgsql-choosen.style (optionnal if you want the default one, then edit config.sh acordingly)
-
 
 First import
 ============
@@ -50,23 +47,15 @@ From a local file :
 
 Update your database
 ====================
-Download the state.txt file a few minutes earlier than the osm file you imported and put it aside from "update-osm.sh" script
+osm2pgsql-replication keeps track of where it left off directly in the database
+(no state.txt file to manage by hand). First run only :
+osm2pgsql-replication init -d <your db name>
+(it auto-detects the starting point from the imported file's own timestamp)
 
-Tweak : If you are importing from planet file at planet.osm.org, this command : 
-wget -q -O - http://planet.osm.org/planet/planet-latest.osm.bz2 | bunzip2 | head -n 10 | grep timestamp
-should get you the timestamp of the file. If you are using the pbf file, timestamp is exactly the same, then get the state.txt here : http://planet.osm.org/replication/minute/ 
-with a date just before.
-
-Then put in your contrab a line like :
+Then put in your crontab a line like :
 */10 * * * * $PATH/update-osm.sh > some_log_file 2>&1
 
 Tweak for debuging : in config.sh you can activate a more verbose output for more information
 OR
 run "./update-osm.sh -v" to force verbose mode
-
-
-import of minutes diffs
------------------------
-
-configuration.txt : is the osmosis file (?) to configure diffs download
 

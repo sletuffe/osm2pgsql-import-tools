@@ -8,11 +8,9 @@ echo "ex : ./import.sh /here/is/my/file.pbf"
 exit
 fi
 
-parsing_mode="pbf"
+echo $osm2pgsql $import_osm2pgsql_options $1
 
-echo $osm2pgsql $import_osm2pgsql_options -r $parsing_mode $1
-
-$osm2pgsql $import_osm2pgsql_options -r $parsing_mode $1
+$osm2pgsql $import_osm2pgsql_options $1
 
 # running post import sql scripts (will do nothing if no sql scripts configured in config.sh)
 $project_dir/apply-post-import-sql.sh

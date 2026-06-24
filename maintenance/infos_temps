@@ -3,14 +3,14 @@
 . $(dirname $0)/../config.sh
 
 if [ -z $1 ] ; then
-  etape=osm2pgsql
+  etape=replication
 else
   etape=$1
 fi
 
 if [ "$1" == "" ] ; then
-  echo "This tool computes timespent by one of those 3 steps : osm2pgsql, osmosis ou tile_expiry"
-  echo "usage : ./infos_temps osmosis"
+  echo "This tool computes timespent by one of those 2 steps : replication ou tile_expiry"
+  echo "usage : ./infos_temps replication"
 fi
 
 i=0 
