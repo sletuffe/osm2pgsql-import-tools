@@ -1,5 +1,0 @@
-# The URL of the directory containing change files.
-#France only :
-baseUrl=http://download.openstreetmap.fr/replication/europe/france/minute/
-
-maxInterval = 7200
