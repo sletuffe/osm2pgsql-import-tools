@@ -102,7 +102,7 @@ if [ -s "$osm2pgsql_expire_tile_list" ] && [ ! -z "$rendering_styles_tiles_to_ex
     #parents, down to expire_minzoom) as expired on disk. No active rendering is queued;
     #mod_tile/tirex will only (re)render a tile the next time an actual visitor asks for it.
     for map in ${rendering_styles_tiles_to_expire//,/ } ; do
-      eval $render_expired_prefix $project_dir/expiremeta.pl --map=$map --minzoom=$expire_minzoom < $osm2pgsql_expire_tile_list $dev_null_redirection
+      eval $render_expired_prefix $expire_tool --map=$map --minzoom=$expire_minzoom < $osm2pgsql_expire_tile_list $dev_null_redirection
     done
   fi
 
