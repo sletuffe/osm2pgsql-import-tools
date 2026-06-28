@@ -4,5 +4,4 @@ configuration.txt
 state.txt
 state.txt.old
 download.lock
-expiry-tools/expiremeta-fast
 expiry-tools/expiremeta-improved.pl
