@@ -71,7 +71,7 @@ fi
 #Download and apply diffs in one go, osm2pgsql-replication keeps track of where it
 #left off in the database itself (no more state.txt to babysit)
 time_spent start
-eval $osm2pgsql_replication update --once -d $base_osm --max-diff-size $replication_max_diff_size -- $diff_osm2pgsql_options $expire_options $dev_null_redirection
+eval $replication_prefix $osm2pgsql_replication update --once -d $base_osm --max-diff-size $replication_max_diff_size -- $diff_osm2pgsql_options $expire_options $dev_null_redirection
 replication_exit_code=$?
 time_spent stop replication
 
@@ -107,6 +107,11 @@ if [ -s "$osm2pgsql_expire_tile_list" ] && [ ! -z "$rendering_styles_tiles_to_ex
   fi
 
   time_spent stop tile_expiry
+  if [ ! -z "$expire_list_archive_dir" ]; then
+    mkdir -p "$expire_list_archive_dir"
+    gzip -c "$osm2pgsql_expire_tile_list" > "$expire_list_archive_dir/expire-${current_date//:/-}.list.gz"
+    find "$expire_list_archive_dir" -name '*.list.gz' -mtime +${expire_list_archive_retention_days:-30} -delete
+  fi
   rm $osm2pgsql_expire_tile_list
 fi
 
