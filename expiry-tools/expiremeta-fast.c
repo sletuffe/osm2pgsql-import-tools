@@ -201,6 +201,7 @@ int main(int argc, char *argv[]) {
         decode(hs.table[i], &z, &mx, &my);
         metatile_path(path, tiledir, z, mx, my);
         if (stat(path, &st) == 0) {
+            ut.actime = st.st_atime; /* keep real atime: only mtime marks the tile expired */
             utime(path, &ut);
             touched++;
         } else {
